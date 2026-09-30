@@ -1,69 +1,69 @@
-import Image from "next/image";
+"use client";
+import { useRef, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { CONFIG } from "@/app/lib/constants";
+import FloatingBackground from "@/app/components/FloatingBackground";
+import PasswordStep from "@/app/components/steps/PasswordStep";
+import WelcomeStep from "@/app/components/steps/WelcomeStep";
+import PhotoStep from "@/app/components/steps/PhotoStep";
+import LetterStep from "@/app/components/steps/LetterStep";
+import ReasonsStep from "@/app/components/steps/ReasonsStep";
+import QuestionStep from "@/app/components/steps/QuestionStep";
+import CelebrationStep from "@/app/components/steps/CelebrationStep";
 
-export default function Home() {
+const STEPS = ["password", "welcome", "photo", "letter", "reasons", "question", "celebration"] as const;
+type Step = typeof STEPS[number];
+
+export default function Page() {
+  const [step, setStep] = useState<Step>("password");
+  const [musicOn, setMusicOn] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const next = () => {
+    const i = STEPS.indexOf(step);
+    if (i < STEPS.length - 1) setStep(STEPS[i + 1]);
+  };
+
+  const startMusic = () => {
+    const a = audioRef.current;
+    if (!a) return;
+    a.volume = 0.55;
+    a.play().then(() => setMusicOn(true)).catch(() => {});
+  };
+
+  const toggleMusic = () => {
+    const a = audioRef.current;
+    if (!a) return;
+    if (a.paused) a.play().then(() => setMusicOn(true)).catch(() => {});
+    else { a.pause(); setMusicOn(false); }
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="fixed inset-0 overflow-hidden bg-[#0B0B0F]">
+      <FloatingBackground />
+
+      <audio ref={audioRef} src={CONFIG.song} loop preload="auto" />
+
+      {step !== "password" && (
+        <button onClick={toggleMusic} aria-label="music"
+          className="fixed top-4 right-4 z-50 grid h-11 w-11 place-items-center rounded-full border border-pink-400/30 bg-black/50 backdrop-blur-md text-lg transition active:scale-90">
+          {musicOn ? "🔊" : "🔇"}
+        </button>
+      )}
+
+      <AnimatePresence mode="wait">
+        {step === "password" && (
+          <PasswordStep key="password" onSuccess={() => setStep("welcome")} />
+        )}
+        {step === "welcome" && (
+          <WelcomeStep key="welcome" onNext={() => { startMusic(); next(); }} />
+        )}
+        {step === "photo" && <PhotoStep key="photo" onNext={next} />}
+        {step === "letter" && <LetterStep key="letter" onNext={next} />}
+        {step === "reasons" && <ReasonsStep key="reasons" onNext={next} />}
+        {step === "question" && <QuestionStep key="question" onYes={() => setStep("celebration")} />}
+        {step === "celebration" && <CelebrationStep key="celebration" />}
+      </AnimatePresence>
+    </main>
   );
 }
