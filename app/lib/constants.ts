@@ -1,8 +1,8 @@
 export const CONFIG = {
-  password: "3310",
+  password: "1205",
   passwordHint: "Woh 4 digits jo purane zamane ki yaad dilaye 🧸",
 
-  herName: "Hamna",
+  herName: "Noor",
   nicknames: ["Sahzadi", "Mari Mano Bili", "Jaan"],
 
   photo: "/her.jpg",
@@ -10,7 +10,7 @@ export const CONFIG = {
 
   welcome: {
     script: "For You",
-    title: "Meri Sahzadi, Hamna 💗",
+    title: "Meri Sahzadi, Noor 💗",
     subtitle: "Kuch khaas banaya hai tumhare liye...",
     cta: "🎁 Kholo",
     note: "Headphones lagao 🎧 — maza double ho jayega",
@@ -44,7 +44,7 @@ export const CONFIG = {
     { icon: "crown",  title: "Kyunki Tum Meri Ho",text: "Meri Sahzadi — aur main tumhara forever." },
   ],
 
-  question: "Kya tum meri girlfriend banogi?",
+  question: "Kya tum meri Wife banogi?",
   questionSub: "Jaan, dhyan se sochna... YES wala button zyada pyara hai 😌",
 
   yesTexts: ["YES 💖", "Haan Jaan 💗", "Bilkul YES 🧸", "100% YES 💕"],
@@ -64,7 +64,7 @@ export const CONFIG = {
     title: "YES! 🎉",
     message:
       "Ab yeh teddy tumhara 🧸, yeh dil tumhara 💗, aur Sun Saathiya hamesha humara rahega 🎶",
-    footer: "I love you, Hamna",
+    footer: "I love you, Noor",
     sub: "— Tumhara, sirf tumhara 🧸",
   },
 };

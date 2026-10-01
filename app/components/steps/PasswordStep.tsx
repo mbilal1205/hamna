@@ -38,7 +38,7 @@ export default function PasswordStep({ onSuccess }: { onSuccess: () => void }) {
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="font-playfair text-3xl font-bold text-white mb-2">
-          Sirf <span className="text-pink-400">Hamna</span> ke liye
+          Sirf <span className="text-pink-400">Noor</span> ke liye
         </motion.h1>
 
         <motion.p variants={itemVariants} className="mb-9 text-sm text-pink-100/50">
