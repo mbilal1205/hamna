@@ -2,7 +2,7 @@ export const CONFIG = {
   password: "1205",
   passwordHint: "Woh 4 digits jo purane zamane ki yaad dilaye 🧸",
 
-  herName: "Noor",
+  herName: "Jannat",
   nicknames: ["Sahzadi", "Mari Mano Bili", "Jaan"],
 
   photo: "/her.jpg",
@@ -10,7 +10,7 @@ export const CONFIG = {
 
   welcome: {
     script: "For You",
-    title: "Meri Sahzadi, Noor 💗",
+    title: "Meri Sahzadi, Jannat 💗",
     subtitle: "Kuch khaas banaya hai tumhare liye...",
     cta: "🎁 Kholo",
     note: "Headphones lagao 🎧 — maza double ho jayega",
@@ -64,7 +64,7 @@ export const CONFIG = {
     title: "YES! 🎉",
     message:
       "Ab yeh teddy tumhara 🧸, yeh dil tumhara 💗, aur Sun Saathiya hamesha humara rahega 🎶",
-    footer: "I love you, Noor",
+    footer: "I love you, Jannat",
     sub: "— Tumhara, sirf tumhara 🧸",
   },
 };

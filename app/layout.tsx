@@ -7,7 +7,7 @@ const inter    = Inter({ subsets: ["latin"], variable: "--font-inter", display: 
 const vibes    = Great_Vibes({ weight: "400", subsets: ["latin"], variable: "--font-vibes", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "For Noor 🧸",
+  title: "For Jannat 🧸",
   description: "A little something made with love",
 };
 
