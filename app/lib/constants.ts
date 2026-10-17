@@ -1,5 +1,5 @@
 export const CONFIG = {
-  password: "1205",
+  password: "1204",
   passwordHint: "Woh 4 digits jo purane zamane ki yaad dilaye 🧸",
 
   herName: "Jannat",
